@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$vmovie-app-primary: mat-palette($mat-blue-grey, 700);
+$vmovie-app-accent: mat-palette($mat-blue-grey, 800);
+$vmovie-app-warn: mat-palette($mat-blue-grey, 900);
+$vmovie-app-theme: mat-light-theme($vmovie-app-primary, $vmovie-app-accent, $vmovie-app-warn);
+
+@include angular-material-theme($vmovie-app-theme);
+
+// $vmovie-typography: mat-typography-config(
+//   $font-family: 'Roboto Condensed'
+// );
+// @include angular-material-typography($vmovie-typography);
