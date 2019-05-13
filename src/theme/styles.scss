@@ -1,2 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'material_theme';
+@import 'variables';
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        word-wrap: break-word;
+        pre {
+            word-wrap: normal;
+        }
+        app-root {
+            height: 100%;
+            display: block;
+            position: relative;
+            flex-direction: column;
+            *:focus {
+                outline: none;
+            }
+        }
+
+        .mat-form-field{
+            font-size: 12px
+        }
+
+    }
+}
+

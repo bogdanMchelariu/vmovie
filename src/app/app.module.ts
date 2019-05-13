@@ -1,15 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { CoreModule } from './modules/core/core.module';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatButtonModule } from '@angular/material';
+import { AppRoutingModule } from './app-routing.module';
+import { AppInitService } from './modules/core/services';
+
+export function initializeApp(appInitService: AppInitService) {
+  return (): Promise<any> => {
+    return appInitService.initializeApp();
+  };
+}
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, MatButtonModule],
-  providers: [],
+  imports: [AppRoutingModule, CoreModule],
+  providers: [
+    AppInitService,
+    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <div>Visma</div>
+  <vm-autocomplete></vm-autocomplete>
+
+  <button mat-icon-button [matMenuTriggerFor]="userSettings">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu #userSettings="matMenu" [overlapTrigger]="false" xPosition="before">
+  <div class="user-container" *ngIf="userDetails$ | async as user">
+    <div class="user-img">
+      <img
+        src="https://www.gravatar.com/avatar/{{ user.avatar.gravatar.hash }}"
+        alt="user"
+        height="24px"
+        width="24px"
+      />
+    </div>
+    <div class="user-detail">
+      <div class="user-name">{{ user?.username }}</div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="signOut()">
+    <mat-icon>power_settings_new</mat-icon>
+    <span>Sign Out</span>
+  </button>
+</mat-menu>

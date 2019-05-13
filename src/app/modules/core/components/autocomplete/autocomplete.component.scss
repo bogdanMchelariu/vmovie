@@ -1,0 +1,15 @@
+@import 'variables';
+
+vm-autocomplete {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  form {
+    width: 35vw;
+    margin-top: $content-padding;
+    padding: 0 $content-padding 0 $content-padding;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}

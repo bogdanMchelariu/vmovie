@@ -1,0 +1,19 @@
+@import 'variables';
+
+.user-container {
+  display: flex;
+  padding:  0 $content-padding-sm 0 $content-padding-sm;
+  .user-img {
+    padding: $content-padding-sm;
+    img {
+      border-radius: 50%;
+    }
+  }
+  .user-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: $content-padding-sm;
+    font-weight: 600;
+  }
+}

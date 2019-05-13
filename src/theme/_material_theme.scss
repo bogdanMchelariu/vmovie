@@ -9,7 +9,7 @@ $vmovie-app-theme: mat-light-theme($vmovie-app-primary, $vmovie-app-accent, $vmo
 
 @include angular-material-theme($vmovie-app-theme);
 
-// $vmovie-typography: mat-typography-config(
-//   $font-family: 'Roboto Condensed'
-// );
-// @include angular-material-typography($vmovie-typography);
+$vmovie-typography: mat-typography-config(
+  $font-family: 'Roboto Condensed'
+);
+@include angular-material-typography($vmovie-typography);
