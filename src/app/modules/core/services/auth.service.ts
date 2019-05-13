@@ -12,16 +12,12 @@ import { IAccount, IToken, ISession } from '../models';
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  getToken() {
-    return this.httpClient
-      .get(environment.baseUrl.auth_token + environment.api_key)
-      .pipe(
-        tap(
-          (response: IToken) =>
-            (window.location.href =
-              environment.authUrl + response.request_token + '?redirect_to=http://localhost:4200/')
-        )
-      );
+  getToken(): Observable<IToken> {
+    return this.httpClient.get<IToken>(`${environment.baseUrl.auth_token + environment.api_key}`).pipe(
+      tap(response => {
+        window.location.href = environment.authUrl + response.request_token + '?redirect_to=' + window.location.href;
+      })
+    );
   }
   getSessionId(token: string): Observable<ISession> {
     return this.httpClient

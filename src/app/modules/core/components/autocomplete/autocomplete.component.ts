@@ -6,6 +6,7 @@ import { IResponseMovies } from '../../models/IResponseMovies';
 import { MovieService } from '../../services/movie.service';
 import { IMovie } from '../../models/IMovie';
 import { Router } from '@angular/router';
+import { query } from '@angular/core/src/render3';
 
 @Component({
   selector: 'vm-autocomplete',
@@ -13,24 +14,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./autocomplete.component.scss']
 })
 export class AutocompleteComponent implements OnInit {
-  moviesForm: FormGroup;
-
-  stateCtrl = new FormControl();
+  movieInput = new FormControl();
   filteredMovies: Observable<IResponseMovies>;
+
   constructor(private movieService: MovieService, private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
-    this.moviesForm = this.fb.group({
-      movieInput: null
-    });
-    this.filteredMovies = this.moviesForm.get('movieInput').valueChanges.pipe(
-      filter(query => query.length >= 2 || query.length !== 0),
+    this.filteredMovies = this.movieInput.valueChanges.pipe(
+      startWith<any>(''),
+      map(value => {
+        return this.isValueObject(value) ? value.title : value;
+      }),
       debounceTime(250),
+      filter(query => query.length >= 2 || query.length !== 0 || typeof query !== 'string'),
       distinctUntilChanged(),
       switchMap(query => {
         return this.movieService.searchMovie(query);
       })
     );
+  }
+
+  private isValueObject(val): boolean {
+    if (val === null) {
+      return false;
+    }
+    return typeof val === 'function' || typeof val === 'object';
   }
 
   displayFn(movie: IMovie): string {
