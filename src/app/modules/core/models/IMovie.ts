@@ -1,16 +1,49 @@
 export interface IMovie {
-  poster_path: string;
-  adult: false;
-  overview: string;
-  release_date: string;
-  genre_ids: number[];
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection?: any;
+  budget: number;
+  genres: IGenre[];
+  homepage: string;
   id: number;
-  original_title: string;
+  imdb_id: string;
   original_language: string;
-  title: string;
-  backdrop_path: string | null;
+  original_title: string;
+  overview: string;
   popularity: number;
-  vote_count: number;
+  poster_path?: any;
+  production_companies: IProductionCompany[];
+  production_countries: IProductionCountry[];
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: ISpokenLanguage[];
+  status: string;
+  tagline: string;
+  title: string;
   video: boolean;
   vote_average: number;
+  vote_count: number;
+}
+
+export interface IGenre {
+  id: number;
+  name: string;
+}
+
+export interface IProductionCompany {
+  id: number;
+  logo_path: string;
+  name: string;
+  origin_country: string;
+}
+
+export interface IProductionCountry {
+  iso_3166_1: string;
+  name: string;
+}
+
+export interface ISpokenLanguage {
+  iso_639_1: string;
+  name: string;
 }

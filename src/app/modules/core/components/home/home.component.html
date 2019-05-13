@@ -1,0 +1,3 @@
+<virtual-scroller #scroll [items]="movieService.favoriteMovies" scrollThrottlingTime="0" scrollAnimationTime="0">
+  <vm-movie-favorite-item *ngFor="let movie of scroll.viewPortItems" [movie]="movie"> </vm-movie-favorite-item>
+</virtual-scroller>

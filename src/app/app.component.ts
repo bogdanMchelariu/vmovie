@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'vm-root',
@@ -8,9 +7,7 @@ import { Location } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  constructor( private location: Location) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.location.go('');
-  }
+  ngOnInit() {}
 }

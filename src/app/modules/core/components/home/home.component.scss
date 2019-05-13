@@ -1,0 +1,11 @@
+vm-home {
+  display: flex;
+  justify-content: center;
+  virtual-scroller {
+    display: flex;
+    position: relative;
+    width: 65vw;
+    height: 90vh;
+    overflow: auto;
+  }
+}

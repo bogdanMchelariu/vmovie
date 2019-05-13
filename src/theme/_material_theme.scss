@@ -2,7 +2,8 @@
 
 @include mat-core();
 
-$vmovie-app-primary: mat-palette($mat-blue-grey, 700);
+$vmovie-app-primary: mat-palette($mat-yellow, 900);
+
 $vmovie-app-accent: mat-palette($mat-blue-grey, 800);
 $vmovie-app-warn: mat-palette($mat-blue-grey, 900);
 $vmovie-app-theme: mat-light-theme($vmovie-app-primary, $vmovie-app-accent, $vmovie-app-warn);
@@ -10,6 +11,6 @@ $vmovie-app-theme: mat-light-theme($vmovie-app-primary, $vmovie-app-accent, $vmo
 @include angular-material-theme($vmovie-app-theme);
 
 $vmovie-typography: mat-typography-config(
-  $font-family: 'Roboto Condensed'
+  $font-family: 'Roboto, "Helvetica Neue", sans-serif'
 );
 @include angular-material-typography($vmovie-typography);

@@ -1,0 +1,11 @@
+@import 'variables';
+
+vm-movie-favorite-item {
+    display: flex;
+    width: 100%;
+    height: initial;
+    mat-card{
+        margin: $content-padding;
+        cursor: pointer;
+    }
+}

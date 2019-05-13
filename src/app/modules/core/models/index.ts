@@ -1,3 +1,6 @@
 export * from './IAccount'
 export * from './IToken'
 export * from './ISession'
+export * from './IMovie'
+export * from './IFavorite'
+export * from './IResponseMovies'

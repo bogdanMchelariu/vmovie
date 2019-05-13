@@ -3,7 +3,8 @@ import { CoreModule } from './modules/core/core.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AppInitService } from './modules/core/services';
+import { AppInitService, HttpErrorInterceptor } from './modules/core/services';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export function initializeApp(appInitService: AppInitService) {
   return (): Promise<any> => {
@@ -16,7 +17,12 @@ export function initializeApp(appInitService: AppInitService) {
   imports: [AppRoutingModule, CoreModule],
   providers: [
     AppInitService,
-    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true }
+    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
