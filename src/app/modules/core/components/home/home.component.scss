@@ -4,8 +4,14 @@ vm-home {
   virtual-scroller {
     display: flex;
     position: relative;
-    width: 65vw;
+    width: 90vw;
     height: 90vh;
     overflow: auto;
+  }
+
+  @media (min-width: 576px) {
+    virtual-scroller {
+      width: 65vw;
+    }
   }
 }
