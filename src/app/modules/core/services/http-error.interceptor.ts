@@ -6,10 +6,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('Loading...', request);
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          console.log(event);
+          // console.log(event);
+          console.log('Loaded...', event);
         }
         return event;
       }),
@@ -18,12 +20,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           reason: error && error.error.reason ? error.error.reason : '',
           status: error.status
         };
-        console.log(data);
+        // console.log(data);
         return throwError(error);
       }),
       finalize(() => {
         const msg = `${request.method} "${request.urlWithParams}"`;
-        console.log(msg);
+        // console.log(msg);
       })
     );
   }

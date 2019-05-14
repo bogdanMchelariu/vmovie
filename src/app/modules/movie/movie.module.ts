@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { Routes, RouterModule } from '@angular/router';
+import { MovieDetailsComponent } from './components';
 
 const routes: Routes = [
   {

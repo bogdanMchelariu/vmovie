@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { MovieDetailsService } from '../../service';
 import { Observable, Subscription } from 'rxjs';
-import { IMovie } from 'src/app/modules/core/models';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { IMovie } from 'src/app/modules/core/models';
 
 @Component({
   selector: 'vm-movie-details',

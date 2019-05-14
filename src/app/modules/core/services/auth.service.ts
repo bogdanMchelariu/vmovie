@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { IAccount, IToken, ISession } from '../models';
+import { IAccount, IToken, ISession, ApiMethods } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -13,27 +13,28 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   getToken(): Observable<IToken> {
-    return this.httpClient.get<IToken>(`${environment.baseUrl.auth_token + environment.api_key}`).pipe(
+    return this.httpClient.get<IToken>(ApiMethods.auth_token + environment.api_key).pipe(
       tap(response => {
-        window.location.href = environment.authUrl + response.request_token + '?redirect_to=' + window.location.href;
+        window.location.href = ApiMethods.authUrl + response.request_token + '?redirect_to=' + window.location.href;
       })
     );
   }
   getSessionId(token: string): Observable<ISession> {
     return this.httpClient
-      .post<ISession>(environment.baseUrl.auth_session + environment.api_key, {
+      .post<ISession>(ApiMethods.auth_session + environment.api_key, {
         request_token: token
       })
       .pipe(tap(res => this.setSessionIdLocalStorage(res.session_id)));
   }
   getAccount(): Observable<IAccount> {
     return this.httpClient.get<IAccount>(
-      environment.baseUrl.account + environment.api_key + '&session_id=' + this.getSessionIdLocalStorage()
+      ApiMethods.account + environment.api_key + '&session_id=' + this.getSessionIdLocalStorage()
     );
   }
 
   // local storage methods
   private setSessionIdLocalStorage(sessionId: string) {
+    // TODO encrypt sessionId
     localStorage.setItem('session_id', sessionId);
   }
   removeSessionIdLocalStorage() {
@@ -41,6 +42,7 @@ export class AuthService {
     this.getToken().subscribe();
   }
   getSessionIdLocalStorage() {
+    // TODO decrypt sessionId
     return localStorage.getItem('session_id');
   }
 }

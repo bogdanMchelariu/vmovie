@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { tap } from 'rxjs/operators';
-import { IResponseMovies, IMovie } from '../models';
+import { IResponseMovies, IMovie, ApiMethods } from '../models';
 
 @Injectable()
 export class MovieService {
@@ -13,7 +13,7 @@ export class MovieService {
 
   searchMovie(title: string): Observable<IResponseMovies> {
     return this.httpClient.get<IResponseMovies>(
-      environment.baseUrl.search_movie + environment.api_key + environment.movie_query + title
+      ApiMethods.search_movie + environment.api_key + ApiMethods.movie_query + title
     );
   }
 
